@@ -1,6 +1,6 @@
 import { SpanStatusCode, trace } from "@opentelemetry/api";
 
-export async function getPokemonData() {
+async function getPokemonData() {
   return await trace
     .getTracer("pokedex-next-app")
     .startActiveSpan("getPokemonData", async (span) => {

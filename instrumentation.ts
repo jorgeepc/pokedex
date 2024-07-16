@@ -1,7 +1,10 @@
-import { BatchSpanProcessor } from "@opentelemetry/sdk-trace-base";
-import { OTLPHttpJsonTraceExporter, registerOTel } from "@vercel/otel";
+import { registerOTel } from "@vercel/otel";
 
 export function register() {
+  registerOTel({ serviceName: "pokedex-next-app" });
+}
+
+/* export function register() {
   registerOTel({
     instrumentationConfig: {
       fetch: {
@@ -9,7 +12,7 @@ export function register() {
       },
     },
     attributes: {
-      "highlight.project_id": "5g521rlg",
+      "highlight.project_id": "YOUR_PROJECT_ID",
       "highlight.source": "backend",
     },
     traceExporter: new OTLPHttpJsonTraceExporter({
@@ -23,4 +26,4 @@ export function register() {
       ),
     ],
   });
-}
+} */

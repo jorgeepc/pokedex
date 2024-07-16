@@ -1,29 +1,22 @@
-import { registerOTel } from "@vercel/otel";
+import { SimpleSpanProcessor } from "@opentelemetry/sdk-trace-base";
+import { OTLPHttpJsonTraceExporter, registerOTel } from "@vercel/otel";
 
 export function register() {
-  registerOTel({ serviceName: "pokedex-next-app" });
-}
-
-/* export function register() {
   registerOTel({
-    instrumentationConfig: {
-      fetch: {
-        propagateContextUrls: ["*"],
-      },
-    },
-    attributes: {
-      "highlight.project_id": "YOUR_PROJECT_ID",
-      "highlight.source": "backend",
-    },
-    traceExporter: new OTLPHttpJsonTraceExporter({
-      url: "https://otel.highlight.io:4318/v1/traces",
-    }),
+    serviceName: "pokedex-next-app",
     spanProcessors: [
-      new BatchSpanProcessor(
+      new SimpleSpanProcessor(
         new OTLPHttpJsonTraceExporter({
-          url: "https://otel.highlight.io:4318/v1/traces",
+          url: "https://agent-b0fd7500d1ab0740-bf80c4d36043094f.tracetest.io:443/v1/traces",
         })
       ),
     ],
+    instrumentationConfig: {
+      fetch: {
+        propagateContextUrls: [
+          "https://agent-b0fd7500d1ab0740-bf80c4d36043094f.tracetest.io:443",
+        ],
+      },
+    },
   });
-} */
+}

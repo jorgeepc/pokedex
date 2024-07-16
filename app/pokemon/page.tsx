@@ -4,6 +4,7 @@ async function getPokemonData() {
   return await trace
     .getTracer("pokedex-next-app")
     .startActiveSpan("getPokemonData", async (span) => {
+      console.log("Fetching Pokemon data...");
       // Generate random pokemon ID
       const randomId = Math.floor(Math.random() * 898) + 1;
 
